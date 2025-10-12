@@ -2,141 +2,154 @@
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>#sarima</title>
+    <title>C-Tech Campus Dashboard</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#10b981', // Accent Green
+                        'secondary': '#fcd34d', // Accent Yellow
+                        'danger': '#ef4444', // Accent Red
+                        'dark-bg': '#1f2937',
+                        'card-bg': '#374151',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        /* Basic Reset and Responsiveness */
-        body {
-            background-color: blue;
-            color: white; /* Ensure text is readable against blue background */
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
+        /* Custom Keyframes for Marquee-like effect (Text scroll) */
+        @keyframes scroll-text {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
-        .container {
-            max-width: 1200px; /* Max content width */
-            margin: 0 auto; /* Center the content */
-            padding: 10px;
+        /* Custom Keyframes for Marquee-like effect (Image scroll) */
+        @keyframes scroll-images {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
         }
 
-        /* Image Ratio Fix and Responsiveness */
-        .marquee img {
-            /* Make images fluid within their container and maintain aspect ratio */
-            max-width: 100%; 
-            height: auto; 
-            display: inline-block;
-            margin: 0 5px; /* Add some spacing between images */
-            /* If the image should maintain the look of the original 300x200 fixed size, 
-               you can define a fixed size here using modern units, but we prioritize aspect ratio */
-            width: 200px; /* Setting a fluid max-width to respect original size, but keeping height auto */
+        .text-scroller {
+            animation: scroll-text 15s linear infinite;
         }
-        
-        /* Typography Styling moved from deprecated <font> tags */
-        .marquee-welcome b {
-            font-family: Arial, sans-serif;
-            color: red;
-            font-size: 24pt;
-        }
-        .marquee-welcome i {
-            font-family: 'Arial Black', sans-serif;
-            color: yellow;
-            font-size: 24pt;
-        }
-        .marquee-welcome u {
-            font-family: 'Monotype Cursive', cursive;
-            color: black;
-            font-size: 24pt;
-        }
-        
-        /* HR styling moved from deprecated attributes */
-        .hr-red { border: 7px solid red; width: 100%; max-width: 1200px; margin: 10px auto; }
-        .hr-yellow { border: 9px solid yellow; width: 100%; max-width: 1000px; margin: 10px auto; }
-        .hr-white { border: 11px solid white; width: 100%; max-width: 800px; margin: 10px auto; }
 
-        /* Form styling for responsiveness */
-        form input[type="text"], form input[type="password"] {
-            width: 100%;
-            max-width: 300px;
-            padding: 5px;
-            box-sizing: border-box;
+        .image-scroller {
+            animation: scroll-images 20s linear infinite;
         }
-        
-        /* Ensure all lists and links are readable */
-        a { color: lightskyblue; }
-        h1, h2, h3, h4, h5, p, ul, ol { color: white; }
-
     </style>
 </head>
-<body>
-    
-    <div class="container">
+<body class="bg-dark-bg text-gray-100 min-h-screen p-4 sm:p-8 font-sans">
+
+    <div class="container mx-auto max-w-4xl bg-card-bg p-6 sm:p-10 rounded-xl shadow-2xl space-y-8">
         
-        <p>my <b>first html</b><u> page</u></p>
+        <!-- Header / First Paragraph -->
+        <p class="text-lg text-center text-gray-300">
+            My <span class="font-bold text-white">first HTML</span><u class="border-b-2 border-primary"> page</u>
+        </p>
 
-        <marquee behavior="alternate" direction="left" bgcolor="white" class="marquee-welcome">
-            <b>welcome to</b>
-            <i> c-tech</i>
-            <u>campus</u>
-        </marquee>
+        <!-- Scrolling Welcome Banner (Replaces Marquee) -->
+        <div class="overflow-hidden whitespace-nowrap bg-white text-black p-3 rounded-lg shadow-md">
+            <div class="inline-block text-scroller">
+                <span class="font-bold text-danger text-3xl uppercase mx-4">welcome to</span>
+                <span class="font-black text-secondary text-3xl italic mx-4">c-tech</span>
+                <span class="font-[Monotype_Cursive] text-black text-3xl underline decoration-danger mx-4">campus</span>
+                <!-- Duplicate content for smooth infinite scroll -->
+                <span class="font-bold text-danger text-3xl uppercase mx-4">welcome to</span>
+                <span class="font-black text-secondary text-3xl italic mx-4">c-tech</span>
+                <span class="font-[Monotype_Cursive] text-black text-3xl underline decoration-danger mx-4">campus</span>
+            </div>
+        </div>
 
-        <hr class="hr-red">
-        <hr class="hr-yellow">
-        <hr class="hr-white">
+        <!-- Horizontal Dividers -->
+        <div class="space-y-3">
+            <hr class="border-danger border-4 w-full">
+            <hr class="border-secondary border-4 w-[85%] mx-auto">
+            <hr class="border-white border-4 w-[70%] mx-auto">
+        </div>
 
-        <marquee behavior="alternate" direction="left" bgcolor="yellow" class="marquee">
-            <!-- Image size attributes removed; controlled by CSS for better ratio and responsiveness -->
-            <img src="images/1.jpg" alt="Beautiful Place 1">
-            <img src="images/2.jpg" alt="Beautiful Place 2">
-            <img src="images/3.jpg" alt="Beautiful Place 3">
-        </marquee>
+        <!-- Scrolling Image Gallery (Replaces Marquee) -->
+        <div class="overflow-hidden bg-secondary p-4 rounded-lg shadow-lg">
+            <div class="flex image-scroller space-x-4">
+                <img src="images/1.jpg" alt="Beautiful Place 1" class="w-64 h-40 object-cover rounded-md shadow-md flex-shrink-0">
+                <img src="images/2.jpg" alt="Beautiful Place 2" class="w-64 h-40 object-cover rounded-md shadow-md flex-shrink-0">
+                <img src="images/3.jpg" alt="Beautiful Place 3" class="w-64 h-40 object-cover rounded-md shadow-md flex-shrink-0">
+                <!-- Duplicate images for seamless looping -->
+                <img src="images/1.jpg" alt="Beautiful Place 1" class="w-64 h-40 object-cover rounded-md shadow-md flex-shrink-0">
+                <img src="images/2.jpg" alt="Beautiful Place 2" class="w-64 h-40 object-cover rounded-md shadow-md flex-shrink-0">
+                <img src="images/3.jpg" alt="Beautiful Place 3" class="w-64 h-40 object-cover rounded-md shadow-md flex-shrink-0">
+            </div>
+        </div>
+        
+        <!-- Horizontal Dividers -->
+        <div class="space-y-3">
+            <hr class="border-white border-4 w-[70%] mx-auto">
+            <hr class="border-secondary border-4 w-[85%] mx-auto">
+            <hr class="border-danger border-4 w-full">
+        </div>
 
-        <hr class="hr-white">
-        <hr class="hr-yellow">
-        <hr class="hr-red">
+        <!-- Navigation Links -->
+        <div class="flex flex-wrap justify-center gap-4 pt-4 border-t border-gray-600">
+            <a href="#" class="bg-primary hover:bg-green-600 text-dark-bg font-semibold py-2 px-4 rounded-lg transition duration-200 shadow-lg">WALLPAPER</a>
+            <a href="#" class="bg-primary hover:bg-green-600 text-dark-bg font-semibold py-2 px-4 rounded-lg transition duration-200 shadow-lg">VIDEO</a>
+            <a href="#" class="bg-primary hover:bg-green-600 text-dark-bg font-semibold py-2 px-4 rounded-lg transition duration-200 shadow-lg">Admission Form</a>
+            <a href="#" class="bg-primary hover:bg-green-600 text-dark-bg font-semibold py-2 px-4 rounded-lg transition duration-200 shadow-lg">Result</a>
+            <a href="#" class="bg-primary hover:bg-green-600 text-dark-bg font-semibold py-2 px-4 rounded-lg transition duration-200 shadow-lg">ABOUT US</a>
+            <!-- Duplicate links from original code -->
+            <a href="#" class="bg-primary hover:bg-green-600 text-dark-bg font-semibold py-2 px-4 rounded-lg transition duration-200 shadow-lg">RESULT</a>
+            <a href="#" class="bg-primary hover:bg-green-600 text-dark-bg font-semibold py-2 px-4 rounded-lg transition duration-200 shadow-lg">ADMISSION FORM</a>
+        </div>
 
-        <!-- All local file links are replaced with '#' for safety, as these won't work on the web -->
-        <a href="#">WALLPAPER</a><br>
-        <a href="#">VIDEO</a><br>
-        <a href="#">admission form</a><br>
-        <a href="#">result</a><br>
-        <a href="">ABOUT US</a><br>
-        <a href="">RESULT</a><br>
-        <a href="">ADMISSION FORM</a><br>
+        <!-- Headings Section -->
+        <div class="pt-4 border-t border-gray-600 space-y-2">
+            <h1 class="text-3xl font-extrabold text-primary border-b border-gray-600 pb-2">Regions</h1>
+            <h2 class="text-2xl font-bold text-white">INDIA</h2>
+            <h3 class="text-xl font-semibold text-white">DUBAI</h3>
+            <h4 class="text-lg font-medium text-white">japan</h4>
+            <h5 class="text-base text-gray-300">england</h5>
+        </div>
+        
+        <!-- Lists Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
+            <div>
+                <p class="font-bold text-lg mb-2 text-white">STUDENT NAME:- (Unordered)</p>
+                <ul class="list-disc list-inside space-y-1 text-gray-300 ml-4">
+                    <li>SARASWATI</li>
+                    <li>ANISHA</li>
+                    <li>HONEY</li>
+                    <li>PIHU</li>
+                    <li>RIYA</li>
+                </ul>
+            </div>
 
-        <h1>INDIA</h1>
-        <h2>DUBAI</h2>
-        <h3>NEPAL</h3>
-        <h4>japan</h4>
-        <h5>england</h5>
+            <div>
+                <p class="font-bold text-lg mb-2 text-white">Student List (Ordered, Start 100)</p>
+                <ol class="list-decimal list-inside space-y-1 text-gray-300 ml-4" start="100" style="list-style-type: lower-roman;">
+                    <li>SARAS</li>
+                    <li>MAHIMA</li>
+                    <li>ANISHA</li>
+                    <li>PIHU</li>
+                </ol>
+            </div>
+        </div>
 
-        <p>STUDENT NAME:-</p>
-        <ul type="disk">
-            <li>SARASWATI</li>
-            <li>ANISHA</li>
-            <li>HONEY</li>
-            <li>PIHU</li>
-            <li>RIYA</li>
-        </ul>
+        <!-- Form Section -->
+        <form class="bg-gray-700 p-6 rounded-lg shadow-inner space-y-4 mt-8">
+            <label for="name" class="block font-semibold text-white">Name:</label>
+            <input type="text" id="name" maxlength="30" class="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-600 focus:ring-primary focus:border-primary" placeholder="Enter your name">
 
-        <ol type="i" start="100">
-            <li>SARAS</li>
-            <li>MAHIMA</li>
-            <li>ANISHA</li>
-            <li>PIHU</li>
-        </ol>
+            <label for="father" class="block font-semibold text-white">Father's Name:</label>
+            <input type="text" id="father" maxlength="30" class="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-600 focus:ring-primary focus:border-primary" placeholder="Enter father's name">
 
-        <form>
-            <label for="name">Name:</label>
-            <input type="text" id="name" maxlength="30"><br><br>
+            <label for="mother" class="block font-semibold text-white">Mother's Name:</label>
+            <input type="text" id="mother" maxlength="30" class="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-600 focus:ring-primary focus:border-primary" placeholder="Enter mother's name">
 
-            <label for="father">Father's Name:</label>
-            <input type="text" id="father" maxlength="30"><br><br>
-
-            <label for="mother">Mother's Name:</label>
-            <input type="text" id="mother" maxlength="30"><br><br>
-
-            <label for="password">Password:</label>
-            <input type="password" id="password" maxlength="30"><br>
+            <label for="password" class="block font-semibold text-white">Password:</label>
+            <input type="password" id="password" maxlength="30" class="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-600 focus:ring-primary focus:border-primary" placeholder="Enter password">
         </form>
+        
     </div>
 </body>
 </html>
