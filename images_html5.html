@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>#sarima</title>
+    <style>
+        /* Basic Reset and Responsiveness */
+        body {
+            background-color: blue;
+            color: white; /* Ensure text is readable against blue background */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px; /* Max content width */
+            margin: 0 auto; /* Center the content */
+            padding: 10px;
+        }
+
+        /* Image Ratio Fix and Responsiveness */
+        .marquee img {
+            /* Make images fluid within their container and maintain aspect ratio */
+            max-width: 100%; 
+            height: auto; 
+            display: inline-block;
+            margin: 0 5px; /* Add some spacing between images */
+            /* If the image should maintain the look of the original 300x200 fixed size, 
+               you can define a fixed size here using modern units, but we prioritize aspect ratio */
+            width: 200px; /* Setting a fluid max-width to respect original size, but keeping height auto */
+        }
+        
+        /* Typography Styling moved from deprecated <font> tags */
+        .marquee-welcome b {
+            font-family: Arial, sans-serif;
+            color: red;
+            font-size: 24pt;
+        }
+        .marquee-welcome i {
+            font-family: 'Arial Black', sans-serif;
+            color: yellow;
+            font-size: 24pt;
+        }
+        .marquee-welcome u {
+            font-family: 'Monotype Cursive', cursive;
+            color: black;
+            font-size: 24pt;
+        }
+        
+        /* HR styling moved from deprecated attributes */
+        .hr-red { border: 7px solid red; width: 100%; max-width: 1200px; margin: 10px auto; }
+        .hr-yellow { border: 9px solid yellow; width: 100%; max-width: 1000px; margin: 10px auto; }
+        .hr-white { border: 11px solid white; width: 100%; max-width: 800px; margin: 10px auto; }
+
+        /* Form styling for responsiveness */
+        form input[type="text"], form input[type="password"] {
+            width: 100%;
+            max-width: 300px;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        
+        /* Ensure all lists and links are readable */
+        a { color: lightskyblue; }
+        h1, h2, h3, h4, h5, p, ul, ol { color: white; }
+
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        
+        <p>my <b>first html</b><u> page</u></p>
+
+        <marquee behavior="alternate" direction="left" bgcolor="white" class="marquee-welcome">
+            <b>welcome to</b>
+            <i> c-tech</i>
+            <u>campus</u>
+        </marquee>
+
+        <hr class="hr-red">
+        <hr class="hr-yellow">
+        <hr class="hr-white">
+
+        <marquee behavior="alternate" direction="left" bgcolor="yellow" class="marquee">
+            <!-- Image size attributes removed; controlled by CSS for better ratio and responsiveness -->
+            <img src="images/1.jpg" alt="Beautiful Place 1">
+            <img src="images/2.jpg" alt="Beautiful Place 2">
+            <img src="images/3.jpg" alt="Beautiful Place 3">
+        </marquee>
+
+        <hr class="hr-white">
+        <hr class="hr-yellow">
+        <hr class="hr-red">
+
+        <!-- All local file links are replaced with '#' for safety, as these won't work on the web -->
+        <a href="#">WALLPAPER</a><br>
+        <a href="#">VIDEO</a><br>
+        <a href="#">admission form</a><br>
+        <a href="#">result</a><br>
+        <a href="">ABOUT US</a><br>
+        <a href="">RESULT</a><br>
+        <a href="">ADMISSION FORM</a><br>
+
+        <h1>INDIA</h1>
+        <h2>DUBAI</h2>
+        <h3>NEPAL</h3>
+        <h4>japan</h4>
+        <h5>england</h5>
+
+        <p>STUDENT NAME:-</p>
+        <ul type="disk">
+            <li>SARASWATI</li>
+            <li>ANISHA</li>
+            <li>HONEY</li>
+            <li>PIHU</li>
+            <li>RIYA</li>
+        </ul>
+
+        <ol type="i" start="100">
+            <li>SARAS</li>
+            <li>MAHIMA</li>
+            <li>ANISHA</li>
+            <li>PIHU</li>
+        </ol>
+
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" maxlength="30"><br><br>
+
+            <label for="father">Father's Name:</label>
+            <input type="text" id="father" maxlength="30"><br><br>
+
+            <label for="mother">Mother's Name:</label>
+            <input type="text" id="mother" maxlength="30"><br><br>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" maxlength="30"><br>
+        </form>
+    </div>
+</body>
+</html>
