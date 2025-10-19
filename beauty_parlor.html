@@ -26,7 +26,8 @@
             border: 2px solid #D1D5DB; 
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
             position: relative;
-            background-color: #FDFDFD; 
+            /* --- WALL COLOR UPDATE: E6DCDA (Warm Greige/Off-White) --- */
+            background-color: #E6DCDA; 
             border-radius: 8px;
             display: none; /* Hidden by default, shown by JS */
         }
@@ -95,8 +96,8 @@
             z-index: 56;
         }
 
-        /* Vertical Segment Dimensions (Left side) */
-        .dim-line-v-door {
+        /* Vertical Segment Dimensions (Left side - General) */
+        .dim-line-v-left {
             right: auto; 
             left: -40px; 
             border-right-style: none; 
@@ -144,10 +145,16 @@
         }
 
         /* --- Component Styles --- */
-        .wood-oak-cabinet { background-color: #E5C49F; border-top: 1px solid #C9A683; box-shadow: 0 -2px 5px rgba(0,0,0,0.05); }
+        /* CABINET/WOOD COLOR: E8B7AE (Rosy Tan) */
+        .wood-oak-cabinet { 
+            background-color: #E8B7AE; 
+            border-top: 1px solid #C09C94; /* Darker tone for definition */
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.05); 
+        }
         .light-glass { background-color: rgba(200, 200, 200, 0.5); color: #1f2937; border: 1px solid #9ca3af; } 
         .low-iron-glass { background-color: rgba(240, 240, 255, 0.5); border: 2px solid #9ca3af; box-shadow: 0 0 15px rgba(0,0,0,0.2); }
-        .opaque-wall { background-color: #E2E8F0; border-bottom: 2px solid #D1D5DB; }
+        /* Opaque wall section uses the new wall color E6DCDA */
+        .opaque-wall { background-color: #E6DCDA; border-bottom: 2px solid #D1D5DB; } 
         .mullion {
             position: absolute;
             background-color: #4b5563; 
@@ -156,22 +163,67 @@
             pointer-events: none;
         }
         
-        /* Seating Cushion Color - Maroon */
-        .maroon-cushion { background-color: #800000; }
+        /* Switchboard Styles */
+        .dual-switch {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 90%;
+            height: 100%;
+        }
+        .switch-button {
+            background-color: #f3f4f6;
+            border: 1px solid #9ca3af;
+            width: 30%;
+            height: 70%;
+            border-radius: 2px;
+            box-shadow: inset 0 0 2px rgba(0,0,0,0.2);
+        }
         
+        /* Vanity Gap Section - UPDATED TO MATCH WALL COLOR (#E6DCDA) */
+        .vanity-gap-front { 
+            background-color: #E6DCDA; /* Matches the wall container background */
+            border: 1px solid transparent; /* Remove border to make it visually seamless */
+            color: rgba(0, 0, 0, 0.2); /* Make text label very subtle */
+            font-weight: 400; 
+        }
+
         /* Other styles for completeness */
+        .maroon-cushion { background-color: #800000; }
         .wash-basin { position: absolute; bottom: 0; background-color: #F8F8F8; border: 2px solid #D1D5DB; box-shadow: 0 5px 10px rgba(0,0,0,0.1); z-index: 20; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 5px; }
         .basin-bowl { width: 80%; height: 15px; background-color: #FFFFFF; border-radius: 4px 4px 0 0; border: 1px solid #A1A1AA; position: relative; top: 2px; }
         .basin-pedestal { width: 40%; height: calc(100% - 15px); background-color: #E5E5E5; border-left: 1px solid #D1D5DB; border-right: 1px solid #D1D5DB; }
-        .door-knob { position: absolute; background-color: #374151; width: 8px; height: 8px; border-radius: 50%; box-shadow: inset 0 0 3px rgba(255, 255, 255, 0.4); z-index: 15; top: 50%; transform: translateY(-50%); }
-        .vanity-drawer-front { width: 95%; height: 30%; background-color: #C9A683; border-radius: 2px; margin: 2px 0; font-size: 0.6rem; color: #1f2937; display: flex; align-items: center; justify: center; }
-        .vanity-gap-front { background-color: #FDFDFD; border: 1px dashed #A1A1AA; color: #A1A1AA; font-weight: 400; }
+        .door-knob { 
+            position: absolute; 
+            background-color: #374151; /* Dark Silver/Gunmetal */
+            width: 8px; 
+            height: 8px; 
+            border-radius: 50%; 
+            box-shadow: inset 0 0 3px rgba(255, 255, 255, 0.4); 
+            z-index: 15; 
+            /* Default vertical centering is applied in individual style for horizontal placement */
+            top: 50%; 
+            transform: translateY(-50%); 
+        }
+        .vanity-drawer-front { 
+            width: 95%; 
+            /* CABINET COLOR */
+            background-color: #E8B7AE; 
+            border-radius: 2px; 
+            margin: 2px 0; 
+            font-size: 0.6rem; 
+            color: #1f2937; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+        }
         .vanity-mirror { background: #E0E0E0; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-radius: 4px; }
         .vanity-light { background-color: #FFFDEB; border-radius: 50%; box-shadow: 0 0 10px 4px rgba(255, 253, 235, 0.8), inset 0 0 5px rgba(255, 255, 255, 0.9); }
         .vanity-switch { background-color: #d1d5db; border: 1px solid #6b7280; border-radius: 3px; }
         .seating-unit { position: absolute; bottom: 0; display: flex; flex-direction: column; align-items: center; justify: flex-end; }
         .seating-cushion { position: absolute; top: 0; width: 100%; height: 10px; border-radius: 4px 4px 0 0; box-shadow: 0 3px 5px rgba(0,0,0,0.2); z-index: 10; }
-        .seating-storage-base { position: absolute; bottom: 0; width: 100%; height: calc(100% - 10px); display: flex; align-items: center; justify: space-around; padding: 5px; box-sizing: border-box; }
+        .seating-storage-base { position: absolute; bottom: 0; width: 100%; height: calc(100% - 10px); display: flex; align-items: center; justify-content: space-around; padding: 5px; box-sizing: border-box; }
         .sliding-door { height: 100%; width: 50%; display: flex; align-items: center; justify: center; font-weight: 600; font-size: 0.8rem; position: relative; }
         .showcase-frame { position: absolute; background-color: #794326; border: 2px solid #5a311b; box-shadow: 0 5px 15px rgba(0,0,0,0.15); }
         .showcase-interior { 
@@ -183,7 +235,17 @@
             align-items: center; justify-content: center; font-size: 0.55rem; color: #4b5563; font-weight: 600; border-radius: 2px;
         }
         .showcase-glass-front { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(173, 216, 230, 0.1); border: 1px solid #ADD8E6; pointer-events: none; }
-        .flanking-storage-unit { position: absolute; bottom: 0; background-color: #C9A683; border: 1px solid #A1A1AA; display: flex; flex-direction: column; align-items: center; justify: center; }
+        .flanking-storage-unit { 
+            position: absolute; 
+            bottom: 0; 
+            /* CABINET COLOR */
+            background-color: #E8B7AE; 
+            border: 1px solid #A1A1AA; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify: center; 
+        }
 
     </style>
 </head>
@@ -196,8 +258,8 @@
 
     <!-- Navigation Tabs -->
     <div class="flex flex-wrap justify-center gap-2 mb-8 max-w-4xl mx-auto">
-        <button onclick="showWall('vanity')" id="btn-vanity" class="view-btn bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md transition duration-150">Vanity Wall (Original)</button>
-        <button onclick="showWall('left-seating')" id="btn-left-seating" class="view-btn bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-150">Left Wall (Seating)</button>
+        <button onclick="showWall('vanity')" id="btn-vanity" class="view-btn bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-150">Vanity Wall (Original)</button>
+        <button onclick="showWall('left-seating')" id="btn-left-seating" class="view-btn bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md transition duration-150">Left Wall (Seating)</button>
         <button onclick="showWall('front-glass')" id="btn-front-glass" class="view-btn bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md transition duration-150">Front Wall (Glass Entry)</button>
         <button onclick="showWall('back-showcase')" id="btn-back-showcase" class="view-btn bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow-md transition duration-150">Back Wall (Showcase)</button>
     </div>
@@ -213,7 +275,17 @@
         <!-- ============================================== -->
         <!-- 1. VANITY WALL (Original) -->
         <!-- ============================================== -->
-        <div class="wall-container" id="wall-vanity" data-title="Vanity Wall: Dual Sinks & Storage" data-desc="The main service wall featuring the light oak vanity, mirrors, and lighting scheme.">
+        <div class="wall-container" id="wall-vanity" data-title="Vanity Wall: Dual Sinks & Storage (Updated)" data-desc="The main service wall featuring the rosy tan vanity, mirrors, and lighting scheme with seamless wall-matched gaps.">
+            
+            <!-- --- Vertical Cabinet Height Dimension (Left Side) --- -->
+            <!-- Cabinet Height 30" H (150px). Top position 540 - 150 = 390px -->
+            <div class="dim-line-v-left" style="top: 390px; height: 150px;"></div>
+            <div class="dim-label-v-left" style="top: 465px;">30" Cabinet H</div>
+            
+            <!-- Top Cap for 30" H dimension line -->
+            <div style="position: absolute; left: -45px; top: 390px; width: 10px; height: 1px; background-color: #9ca3af; z-index: 55;"></div>
+            <!-- Bottom Cap for 30" H dimension line -->
+            <div style="position: absolute; left: -45px; top: 540px; width: 10px; height: 1px; background-color: #9ca3af; z-index: 55;"></div>
             
             <!-- Cabinet D-1 Width Dimension Line -->
             <div class="dim-segment-h" style="left: 0; width: 18.52%;"></div>
@@ -221,25 +293,36 @@
             <div class="dim-extension-line" style="left: 18.52%;"></div>
             <div class="dim-extension-line" style="left: 0;"></div>
 
-            <!-- Cabinet Base (108" wide, 30" high) - Light Oak -->
+            <!-- Cabinet Base (108" wide, 30" high) - Rosy Tan Cabinet (150px high) -->
             <div class="wood-oak-cabinet" style="position: absolute; bottom: 0; width: 100%; height: 150px; display: flex;">
-                <!-- Drawers (20" = 18.52%) and Gaps (24" = 22.22%) -->
+                
+                <!-- D-1: 3 Drawers (20" = 18.52%) -->
                 <div class="flex flex-col justify-between items-center px-1" style="width: 18.52%;">
-                    <div class="vanity-drawer-front">D-1 Top</div>
-                    <div class="vanity-drawer-front">D-1 Mid</div>
-                    <div class="vanity-drawer-front">D-1 Bottom</div>
+                    <!-- vanity-drawer-front uses the updated cabinet color -->
+                    <div class="vanity-drawer-front h-[30%]">D-1 Top</div>
+                    <div class="vanity-drawer-front h-[30%]">D-1 Mid</div>
+                    <div class="vanity-drawer-front h-[30%]">D-1 Bottom</div>
                 </div>
+
+                <!-- GAP 1 (24" = 22.22%) - NOW MATCHES WALL COLOR -->
                 <div class="vanity-gap-front flex items-center justify-center text-xs" style="width: 22.22%;">24" GAP</div>
-                <div class="flex flex-col justify-between items-center px-1" style="width: 18.52%;">
-                    <div class="vanity-drawer-front">D-2 Top</div>
-                    <div class="vanity-drawer-front">D-2 Mid</div>
-                    <div class="vanity-drawer-front">D-2 Bottom</div>
+
+                <!-- D-2: 1 Small Top, 1 Large Combined (20" = 18.52%) -->
+                <div class="flex flex-col justify-start items-center px-1 py-1" style="width: 18.52%; height: 100%;">
+                    <!-- D-2 Top (30% height) -->
+                    <div class="vanity-drawer-front mb-1" style="height: 30%;">D-2 Top</div>
+                    <!-- D-2 Combined (approx 62% height to fill remaining space) -->
+                    <div class="vanity-drawer-front" style="height: 62%;">D-2 Combined</div>
                 </div>
+
+                <!-- GAP 2 (24" = 22.22%) - NOW MATCHES WALL COLOR -->
                 <div class="vanity-gap-front flex items-center justify-center text-xs" style="width: 22.22%;">24" GAP</div>
+
+                <!-- D-3: 3 Drawers (20" = 18.52%) -->
                 <div class="flex flex-col justify-between items-center px-1" style="width: 18.52%;">
-                    <div class="vanity-drawer-front">D-3 Top</div>
-                    <div class="vanity-drawer-front">D-3 Mid</div>
-                    <div class="vanity-drawer-front">D-3 Bottom</div>
+                    <div class="vanity-drawer-front h-[30%]">D-3 Top</div>
+                    <div class="vanity-drawer-front h-[30%]">D-3 Mid</div>
+                    <div class="vanity-drawer-front h-[30%]">D-3 Bottom</div>
                 </div>
             </div>
 
@@ -252,13 +335,31 @@
             <div class="vanity-light absolute" style="left: 70.37%; top: 60px; width: 20px; height: 20px; transform: translateX(-50%);"></div>
 
             <!-- Switches (Centered at 11", 54", 97") -->
-            <div class="vanity-switch absolute flex items-center justify-center" style="left: 10.185%; top: 360px; width: 30px; height: 20px; transform: translateX(-50%);"><div class="switch-button"></div></div>
-            <div class="vanity-switch absolute flex items-center justify-center" style="left: 50.00%; top: 360px; width: 30px; height: 20px; transform: translateX(-50%);"><div class="switch-button"></div></div>
-            <div class="vanity-switch absolute flex items-center justify-center" style="left: 89.815%; top: 360px; width: 30px; height: 20px; transform: translateX(-50%);"><div class="switch-button"></div></div>
+            <!-- Switch 1 -->
+            <div class="vanity-switch absolute flex items-center justify-center" style="left: 10.185%; top: 360px; width: 30px; height: 20px; transform: translateX(-50%);">
+                <div class="dual-switch">
+                    <div class="switch-button"></div>
+                    <div class="switch-button"></div>
+                </div>
+            </div>
+            <!-- Switch 2 -->
+            <div class="vanity-switch absolute flex items-center justify-center" style="left: 50.00%; top: 360px; width: 30px; height: 20px; transform: translateX(-50%);">
+                <div class="dual-switch">
+                    <div class="switch-button"></div>
+                    <div class="switch-button"></div>
+                </div>
+            </div>
+            <!-- Switch 3 -->
+            <div class="vanity-switch absolute flex items-center justify-center" style="left: 89.815%; top: 360px; width: 30px; height: 20px; transform: translateX(-50%);">
+                <div class="dual-switch">
+                    <div class="switch-button"></div>
+                    <div class="switch-button"></div>
+                </div>
+            </div>
         </div>
 
         <!-- ============================================== -->
-        <!-- 3. LEFT WALL (Seating/Storage) - UPDATED BENCH HEIGHT -->
+        <!-- 3. LEFT WALL (Seating/Storage) -->
         <!-- ============================================== -->
         <div class="wall-container" id="wall-left-seating" data-title="Left Wall: Basin, Seating, and Concealed Storage" data-desc="A corner standing wash basin (24-inch), with a 60-inch bench moved to the far right. Bench height is 21 inches.">
             
@@ -270,12 +371,12 @@
                 <span class="text-xs text-gray-600 font-semibold mt-1">24" Basin</span>
             </div>
 
-            <!-- UPDATED: Seating Unit (60" W x 21" H) 21" = 105px high -->
+            <!-- UPDATED: Seating Unit (60" W x 21" H) 21" = 105px high. Uses updated cabinet color. -->
             <div class="seating-unit wood-oak-cabinet" style="left: 44.44%; width: 55.56%; height: 105px;">
                 <!-- Maroon Cushion -->
                 <div class="seating-cushion maroon-cushion"></div>
                 <div class="seating-storage-base">
-                    <!-- Light Gray Glass Doors with Knobs -->
+                    <!-- Light Gray Glass Doors with Knobs (Text removed) -->
                     <div class="sliding-door light-glass">
                         <div class="door-knob" style="right: 15px;"></div>
                     </div>
@@ -307,22 +408,23 @@
             <!-- --- Vertical Segment Dimensions (Left Side) --- -->
 
             <!-- Vertical Basin Height (36" H) -->
-            <div class="dim-line-v-door" style="left: -10px; top: 360px; height: 180px;"></div>
+            <div class="dim-line-v-left" style="left: -10px; top: 360px; height: 180px;"></div>
             <div class="dim-label-v-left" style="left: -45px; top: 450px;">36" Basin H</div>
             
             <!-- Vertical Bench Height (21" H) - Uses left-side external dimensions -->
             <!-- 21" H = 105px. Top position is 540 - 105 = 435px -->
-            <div class="dim-line-v-door" style="top: 435px; height: 105px;"></div>
+            <div class="dim-line-v-left" style="top: 435px; height: 105px;"></div>
             <div class="dim-label-v-left" style="top: 488px;">21" Bench H</div>
 
         </div>
 
         <!-- ============================================== -->
-        <!-- 4. FRONT WALL (Glass Entry) - UPDATED TO 81" HIGH GLASS AND SOLID TOP -->
+        <!-- 4. FRONT WALL (Glass Entry) -->
         <!-- ============================================== -->
         <div class="wall-container" id="wall-front-glass" data-title="Front Wall: Glass Entry (81-inch High Glass System with Opaque Transom)" data-desc="The 42-inch high door and flanking 33-inch glass lites are 81 inches high, grounded at the floor. The top 27 inches is a solid opaque wall.">
             
             <!-- Opaque Wall Section (Top 27" / 135px High) -->
+            <!-- Uses the new wall color E6DCDA -->
             <div class="opaque-wall absolute top-0 left-0 w-full" style="height: 135px;">
                 <span class="absolute inset-0 flex items-center justify-center text-gray-700 text-sm font-semibold">27" Opaque Wall Section</span>
             </div>
@@ -378,29 +480,29 @@
             <!-- --- Vertical Segment Dimensions (Left Side) --- -->
 
             <!-- 4. Glass Height Dimension (81") -->
-            <div class="dim-line-v-door" style="top: 135px; height: 405px;"></div>
+            <div class="dim-line-v-left" style="top: 135px; height: 405px;"></div>
             <div class="dim-label-v-left" style="top: 340px;">81" Glass H</div>
 
             <!-- 5. Opaque Wall Height Dimension (27") -->
-            <div class="dim-line-v-door" style="left: -10px; top: 50px; height: 85px;"></div>
+            <div class="dim-line-v-left" style="left: -10px; top: 50px; height: 85px;"></div>
             <div class="dim-label-v-left" style="left: -45px; top: 90px;">27" Solid H</div>
 
         </div>
 
         <!-- ============================================== -->
-        <!-- 5. BACK WALL (Showcase & Storage) -->
+        <!-- 5. BACK WALL (Showcase & Storage) - UPDATED WITH DOOR KNOBS -->
         <!-- ============================================== -->
-        <div class="wall-container" id="wall-back-showcase" data-title="Back Wall: Showcase and Flanking Storage" data-desc="Central 72-inch glass showcase mounted 36 inches high, divided into a 3x3 grid of 9 display panels. Flanking storage is divided into two 18-inch sections.">
+        <div class="wall-container" id="wall-back-showcase" data-title="Back Wall: Showcase and Flanking Storage (Knobs Added)" data-desc="Central 72-inch glass showcase mounted 36 inches high, divided into a 3x3 grid of 9 display panels. Flanking storage is the new rosy tan color.">
             
-            <!-- 1. Left Flanking Storage (18" W x 36" H) - DIVIDED -->
+            <!-- 1. Left Flanking Storage (18" W x 36" H) - DIVIDED. Uses updated cabinet color. -->
             <div class="flanking-storage-unit flex flex-col" style="left: 0; width: 16.67%; height: 180px; bottom: 240px;">
-                <!-- Top 18" section -->
-                <div class="h-1/2 w-full flex items-center justify-center border-b border-gray-400">
-                    <span class="text-xs font-medium text-gray-700">Storage Top (18" H)</span>
+                <!-- Top 18" section (relative to hold the knob) -->
+                <div class="h-1/2 w-full flex items-center justify-center border-b border-gray-400 relative">
+                    <div class="door-knob" style="right: 10px;"></div>
                 </div>
-                <!-- Bottom 18" section -->
-                <div class="h-1/2 w-full flex items-center justify-center">
-                    <span class="text-xs font-medium text-gray-700">Storage Bottom (18" H)</span>
+                <!-- Bottom 18" section (relative to hold the knob) -->
+                <div class="h-1/2 w-full flex items-center justify-center relative">
+                    <div class="door-knob" style="right: 10px;"></div>
                 </div>
             </div>
 
@@ -423,15 +525,15 @@
                 </div>
             </div>
             
-            <!-- 3. Right Flanking Storage (18" W x 36" H) - DIVIDED -->
+            <!-- 3. Right Flanking Storage (18" W x 36" H) - DIVIDED. Uses updated cabinet color. -->
             <div class="flanking-storage-unit flex flex-col" style="left: 83.33%; width: 16.67%; height: 180px; bottom: 240px;">
-                <!-- Top 18" section -->
-                <div class="h-1/2 w-full flex items-center justify-center border-b border-gray-400">
-                    <span class="text-xs font-medium text-gray-700">Storage Top (18" H)</span>
+                <!-- Top 18" section (relative to hold the knob) -->
+                <div class="h-1/2 w-full flex items-center justify-center border-b border-gray-400 relative">
+                    <div class="door-knob" style="left: 10px;"></div>
                 </div>
-                <!-- Bottom 18" section -->
-                <div class="h-1/2 w-full flex items-center justify-center">
-                    <span class="text-xs font-medium text-gray-700">Storage Bottom (18" H)</span>
+                <!-- Bottom 18" section (relative to hold the knob) -->
+                <div class="h-1/2 w-full flex items-center justify-center relative">
+                    <div class="door-knob" style="left: 10px;"></div>
                 </div>
             </div>
 
@@ -445,6 +547,7 @@
             <!-- H2. Showcase Width (72") -->
             <div class="dim-segment-h" style="left: 16.67%; width: 66.66%; bottom: -90px;"></div>
             <div class="dim-segment-label" style="left: 50.00%; bottom: -105px;">72" Showcase</div>
+            <div class="dim-extension-line" style="left: 16.67%;"></div>
             <div class="dim-extension-line" style="left: 83.33%; bottom: -90px;"></div>
             
             <!-- H3. Right Storage Width (18") -->
@@ -455,27 +558,35 @@
             <!-- --- Vertical Dimensions (Left and Right Sides) --- -->
             
             <!-- V1. Floor Clearance Height (48") - Left Side -->
-            <div class="dim-line-v-door" style="top: 300px; height: 240px;"></div>
+            <!-- The flanking storage unit is placed 48" from floor and is 36" H (48+36=84").
+                 This means the clearance is from the top of the storage (84") to the top of the wall (108"), which is 24". -->
+            <!-- Let's dimension the floor clearance (0" to 48") -->
+            <div class="dim-line-v-left" style="left: -10px; top: 300px; height: 240px;"></div>
             <div class="dim-label-v-left" style="top: 420px;">48" Floor Clearance</div>
             
             <!-- V2. Storage Unit Height (36") - Left Side -->
-            <div class="dim-line-v-door" style="left: -10px; top: 360px; height: 180px;"></div>
-            <div class="dim-label-v-left" style="left: -45px; top: 450px;">36" Storage H</div>
+            <div class="dim-line-v-left" style="top: 120px; height: 180px;"></div>
+            <div class="dim-label-v-left" style="top: 210px;">36" Storage H</div>
 
             <!-- V3. Showcase Height (60") - Right Side -->
-            <div class="dim-line-v-right-component" style="top: 50px; height: 490px; "></div>
-            <div class="dim-label-v-right-component" style="top: 300px;">60" Showcase H</div>
+            <div class="dim-line-v-right-component" style="top: 120px; height: 300px; "></div>
+            <div class="dim-label-v-right-component" style="top: 270px;">60" Showcase H</div>
             <!-- Extension lines for the right-side vertical measurement (now positioned relative to the wall right edge) -->
-            <div class="dim-extension-line" style="right: -40px; top: 50px; height: 1px; bottom: auto;"></div>
-            <div class="dim-extension-line" style="right: -40px; top: 360px; height: 1px; bottom: auto;"></div>
+            <div class="dim-extension-line" style="right: -45px; top: 120px; height: 1px; bottom: auto;"></div>
+            <div class="dim-extension-line" style="right: -45px; top: 420px; height: 1px; bottom: auto;"></div>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Initialize the view to the Front Wall to show the latest changes
-            showWall('front-glass'); 
+            // Initialize the view to the Vanity Wall to show the latest changes
+            showWall('vanity'); 
         });
+
+        // Helper function to convert inches to pixels for scaling (1 inch = 5 pixels)
+        function inchesToPixels(inches) {
+            return inches * 5;
+        }
 
         function showWall(viewId) {
             const wallContainers = document.querySelectorAll('.wall-container');
