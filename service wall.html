@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>108-Inch Wall Service Area Layout</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f7f9fc; }
+        
+        /* Wrapper for centering and holding dimension lines */
+        .wall-wrapper {
+            position: relative;
+            /* Anchoring max width to 600px for visualization scale */
+            max-width: 600px; 
+            margin: 4rem auto;
+            /* Increased bottom padding to make room for the new dimension line */
+            padding: 50px 0 70px 0; 
+        }
+        .wall-container {
+            /* 1 inch = 5 pixels scale: 108" W = 540px, 108" H = 540px */
+            width: 540px; 
+            height: 540px; /* NEW HEIGHT: 108 inches * 5px/inch */
+            margin: 0 auto; 
+            border: 2px solid #D1D5DB; /* Light gray border */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            position: relative;
+            background-color: #FDFDFD; /* Minimalist White Wall (matches image) */
+            border-radius: 8px;
+        }
+
+        /* Dimension Line Styling (Green for all overall dimensions) */
+        .dim-line-h, .dim-line-v {
+            position: absolute;
+            border-color: #22c55e; /* GREEN */
+            border-width: 1px;
+            z-index: 50;
+            pointer-events: none;
+        }
+        .dim-line-h {
+            top: 25px;
+            left: 0; 
+            width: 100%; 
+            border-top-style: dashed;
+        }
+        .dim-line-v {
+            right: -40px; 
+            top: 50px; 
+            height: 540px; 
+            border-right-style: dashed;
+        }
+        .dim-label {
+            position: absolute;
+            background-color: #fff;
+            padding: 2px 6px;
+            border: 1px solid #22c55e; /* GREEN */
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: #22c55e; /* GREEN */
+            font-weight: 700;
+            white-space: nowrap;
+            z-index: 60;
+        }
+        .dim-label-h {
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .dim-label-v {
+            right: -75px; 
+            top: 320px; 
+            transform: translateY(-50%) rotate(90deg);
+        }
+        
+        /* Cabinet Dimension Styles (Green, with arrow heads) */
+        .dim-cabinet-h-bottom {
+            position: absolute;
+            bottom: -10px; /* Below the cabinet base */
+            left: 0;
+            width: 18.52%; /* 20 inches / 108 inches */
+            border-top: 1px solid #22c55e; /* Solid line segment */
+            z-index: 55;
+            pointer-events: none;
+        }
+        .dim-cabinet-label-bottom {
+            position: absolute;
+            bottom: -15px; /* Positioned to overlap and mask the line */
+            left: 9.26%; /* Center of 0 to 18.52% range */
+            transform: translateX(-50%);
+            background-color: #FDFDFD; /* Wall background color to mask the line beneath the text */
+            padding: 0 4px; 
+            border: none;
+            font-size: 0.7rem;
+            color: #22c55e;
+            font-weight: 700;
+            white-space: nowrap;
+            z-index: 65;
+            line-height: 1.2; 
+        }
+        /* Arrows flanking the measurement text */
+        .dim-cabinet-label-bottom::before {
+            content: '<'; /* Left arrow */
+            margin-right: 2px;
+            font-weight: 900;
+        }
+        .dim-cabinet-label-bottom::after {
+            content: '>'; /* Right arrow */
+            margin-left: 2px;
+            font-weight: 900;
+        }
+        /* Extension lines for the bottom dimension */
+        .dim-cabinet-h-bottom::before,
+        .dim-cabinet-h-bottom::after {
+            content: '';
+            position: absolute;
+            bottom: -1px; /* Align with the line */
+            width: 1px;
+            height: 15px; /* Extension line length */
+            background-color: #22c55e;
+            z-index: 56;
+        }
+        .dim-cabinet-h-bottom::after {
+            right: 0;
+        }
+
+        /* Component Styling - LIGHT OAK / WHITE THEME */
+        .cabinet-base {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 150px; /* 30 inches * 5px/inch */
+            display: flex;
+            background-color: #E5C49F; /* Light Oak Base Color */
+            border-radius: 0 0 8px 8px;
+            border-top: 1px solid #C9A683; /* Counter edge highlight */
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+        }
+        .cabinet-unit {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            box-sizing: border-box;
+            background-color: #E5C49F; /* Light Oak Cabinet Frame */
+            border-right: 1px solid #C9A683; /* Drawer separation line */
+            color: #1f2937;
+            padding: 6px 4px;
+        }
+        .drawer-front {
+            width: 95%;
+            height: 30%; 
+            background-color: #C9A683; /* Slightly darker Oak for drawer front */
+            border-radius: 2px;
+            box-shadow: none; /* Removing harsh shadow */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2px 0;
+            font-size: 0.6rem;
+            color: #1f2937;
+        }
+        .gap-front {
+            background-color: #FDFDFD; /* Wall color inside the open gap */
+            border: 1px dashed #A1A1AA; 
+            color: #A1A1AA;
+            font-weight: 400;
+        }
+        .mirror {
+            position: absolute;
+            top: 85px; 
+            height: 300px; /* 60 inches * 5px/inch */
+            background: #E0E0E0; /* Clean light gray for frameless reflection */
+            border: none; /* Frameless */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Soft shadow */
+            border-radius: 4px; /* Sharper, modern edges */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #4b5563;
+            font-weight: 400;
+            font-size: 0.8rem;
+            z-index: 10;
+            padding: 10px;
+        }
+        .light {
+            position: absolute;
+            top: 60px; 
+            width: 20px;
+            height: 20px;
+            background-color: #FFFDEB; /* Warm White Light */
+            border-radius: 50%;
+            box-shadow: 0 0 10px 4px rgba(255, 253, 235, 0.8), inset 0 0 5px rgba(255, 255, 255, 0.9);
+            z-index: 20;
+            transform: translateX(-50%);
+        }
+        /* UPDATED SWITCH STYLES: 6 inches wide (30px) x 4 inches high (20px) */
+        .switch {
+            position: absolute;
+            top: 360px; 
+            width: 30px; /* 6 inches * 5px/in */
+            height: 20px; /* 4 inches * 5px/in */
+            background-color: #d1d5db; /* Neutral light gray switch plate */
+            border: 1px solid #6b7280;
+            border-radius: 3px;
+            z-index: 15;
+            transform: translateX(-50%);
+            display: flex; /* Enable flexbox for inner buttons */
+            align-items: center;
+            justify-content: center;
+        }
+        .switch-button {
+            width: 60%; /* Visual width of the 'button' inside */
+            height: 50%; /* Visual height of the 'button' inside */
+            background-color: #9ca3af; /* Darker gray for the switch button */
+            border: 1px solid #4b5563;
+            border-radius: 2px;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);
+        }
+        .component-info {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 2px 8px; /* Slightly more padding for readability */
+            background-color: rgba(255, 255, 255, 0.95);
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: #1f2937;
+            white-space: nowrap;
+            z-index: 30;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="text-center mb-8">
+        <h1 class="text-3xl font-bold text-gray-800">Final Design: 108" Square Service Area Wall</h1>
+        <p class="text-lg text-gray-600">This is the main vanity wall layout with all measurements in **green**.</p>
+    </div>
+
+    <div class="wall-wrapper">
+        <!-- 108" Width Dimension Line and Label (Now Green) -->
+        <div class="dim-line-h"></div>
+        <div class="dim-label dim-label-h">108 inches (9 ft) - Total Width</div>
+
+        <!-- 108" Height Dimension Line and Label (Now Green) -->
+        <div class="dim-line-v"></div>
+        <div class="dim-label dim-label-v">108 inches (9 ft) - Total Height</div>
+        
+        <!-- The 108-Inch Wall Visualization -->
+        <div class="wall-container" id="wall">
+            
+            <!-- Cabinet D-1 Width Dimension Line (Green, Standard Format) -->
+            <div class="dim-cabinet-h-bottom"></div>
+            <div class="dim-cabinet-label-bottom">20"</div>
+
+            <!-- Cabinet Base (108" wide, 30" high) - Light Oak -->
+            <div class="cabinet-base">
+                <!-- Drawers (20" = 18.52%) and Gaps (24" = 22.22%) -->
+                <div class="cabinet-unit" style="width: 18.52%;" data-unit="20">
+                    <div class="drawer-front">10" H</div>
+                    <div class="drawer-front">10" H</div>
+                    <div class="drawer-front">10" H (D-1)</div>
+                </div>
+                <div class="cabinet-unit gap-front" style="width: 22.22%;" data-unit="24">
+                    <span class="text-xs">24" GAP</span>
+                </div>
+                <div class="cabinet-unit" style="width: 18.52%;" data-unit="20">
+                    <div class="drawer-front">10" H</div>
+                    <div class="drawer-front">10" H</div>
+                    <div class="drawer-front">10" H (D-2)</div>
+                </div>
+                <div class="cabinet-unit gap-front" style="width: 22.22%;" data-unit="24">
+                    <span class="text-xs">24" GAP</span>
+                </div>
+                <div class="cabinet-unit" style="width: 18.52%;" data-unit="20">
+                    <div class="drawer-front">10" H</div>
+                    <div class="drawer-front">10" H</div>
+                    <div class="drawer-front">10" H (D-3)</div>
+                </div>
+            </div>
+
+            <!-- Component Overlays (Mirrors, Lights, Switches) -->
+            <!-- Mirror 1 (M1) - Frameless -->
+            <div id="mirror1" class="mirror" style="left: 12.96%; width: 33.34%;">
+                Mirror 1 (36" W x 60" H)
+            </div>
+
+            <!-- Mirror 2 (M2) - Frameless -->
+            <div id="mirror2" class="mirror" style="left: 53.70%; width: 33.34%;">
+                Mirror 2 (36" W x 60" H)
+            </div>
+
+            <!-- Downlight 1 (D1) - Warm White -->
+            <div id="light1" class="light" style="left: 29.63%;"></div>
+
+            <!-- Downlight 2 (D2) - Warm White -->
+            <div id="light2" class="light" style="left: 70.37%;"></div>
+
+            <!-- Switch Left (SL) - Center at 11" -->
+            <div id="switch-l" class="switch" style="left: 10.185%;"><div class="switch-button"></div></div>
+
+            <!-- Switch Center (SC) - Center at 54" -->
+            <div id="switch-c" class="switch" style="left: 50.00%;"><div class="switch-button"></div></div>
+
+            <!-- Switch Right (SR) - Center at 97" -->
+            <div id="switch-r" class="switch" style="left: 89.815%;"><div class="switch-button"></div></div>
+            
+        </div>
+    </div>
+
+
+    <!-- Detailed Specifications List - SIMPLIFIED -->
+    <div class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-xl mt-8">
+        <h2 class="text-2xl font-bold text-gray-800 border-b pb-2 mb-4">Final Design Specifications (108" Service Wall)</h2>
+
+        <p class="mt-2 font-bold text-gray-800">General Finishes & Wall Dimensions</p>
+        <ul class="list-disc list-inside ml-4 text-gray-700 space-y-1">
+            <li>**Total Wall:** $108 \text{ in}$ Wide x $108 \text{ in}$ High (9 ft Ceiling).</li>
+            <li>**Wall Finish:** Matte White.</li>
+            <li>**Cabinet Finish:** Light Natural Oak Veneer.</li>
+            <li>**Lighting:** Warm White LED (2700K - 3000K).</li>
+        </ul>
+    </div>
+
+    <script>
+        // JavaScript to calculate and show component positions on hover (optional enhancement)
+        const wall = document.getElementById('wall');
+        const wallWidth = 108; // Total inches
+        const scaleFactor = wall.offsetWidth / wallWidth;
+
+        const components = [
+            { id: 'mirror1', start: 14, end: 50, name: "Mirror 1" },
+            { id: 'mirror2', start: 58, end: 94, name: "Mirror 2" },
+            { id: 'light1', center: 32, name: "Light 1" },
+            { id: 'light2', center: 76, name: "Light 2" },
+            // Switch placements based on user request (centered coordinates)
+            { id: 'switch-l', center: 11, name: "Switch L" }, 
+            { id: 'switch-c', center: 54, name: "Switch C" },
+            { id: 'switch-r', center: 97, name: "Switch R" },
+            { id: 'D-1', start: 0, end: 20, name: "Drawer 1" },
+            { id: 'G-1', start: 20, end: 44, name: "Gap 1" },
+            { id: 'D-2', start: 44, end: 64, name: "Drawer 2" },
+            { id: 'G-2', start: 64, end: 88, name: "Gap 2" },
+            { id: 'D-3', start: 88, end: 108, name: "Drawer 3" },
+        ];
+
+        // Function to create a tooltip
+        function createTooltip(element, text) {
+            const tooltip = document.createElement('div');
+            tooltip.className = 'component-info';
+            tooltip.textContent = text;
+            element.addEventListener('mouseover', () => tooltip.style.display = 'block');
+            element.addEventListener('mouseout', () => tooltip.style.display = 'none');
+            wall.appendChild(tooltip);
+
+            // Position the tooltip
+            if (element.id.startsWith('light')) {
+                // Position lights based on their 'left' CSS property
+                const percentage = parseFloat(element.style.left);
+                tooltip.style.left = percentage + '%';
+                tooltip.style.top = '10px';
+            } else if (element.id.startsWith('switch')) {
+                // Position switches slightly above the element (Switch top is 360px, tooltip moves to 330px)
+                 const percentage = parseFloat(element.style.left);
+                 tooltip.style.left = percentage + '%';
+                 tooltip.style.top = '330px'; 
+            } else {
+                // Position mirrors based on center
+                const centerPercentage = (parseFloat(element.style.left) + parseFloat(element.style.width) / 2);
+                tooltip.style.left = centerPercentage + '%';
+            }
+            tooltip.style.display = 'none'; // Initially hidden
+            tooltip.style.zIndex = 30;
+
+        }
+
+        // Apply tooltips to main components for better understanding
+        document.querySelectorAll('.mirror, .light, .switch, .cabinet-unit').forEach(el => {
+            let info = "";
+            
+            // Handle drawer/gap units separately
+             if (el.classList.contains('cabinet-unit')) {
+                const unitWidth = el.getAttribute('data-unit');
+                const isGap = el.classList.contains('gap-front');
+                const name = isGap ? `Gap ${unitWidth}"` : `Drawer Unit ${unitWidth}"`;
+                
+                const componentData = components.find(c => c.id.includes(unitWidth));
+                 if (componentData) {
+                    info = `${name}: ${componentData.start}" - ${componentData.end}"`;
+                 } else {
+                    info = `${name} (30" High)`;
+                 }
+
+            } else {
+                // Handle mirrors, lights, switches
+                const componentData = components.find(c => c.id === el.id || c.id === el.id.replace(/-/g, '_').toUpperCase());
+            
+                if (componentData && componentData.start) {
+                    info = `${componentData.name}: ${componentData.start}" - ${componentData.end}"`;
+                } else if (componentData && componentData.center) {
+                    // Include size for switches
+                    if (el.id.startsWith('switch')) {
+                         // Updated size and height in the tooltip text
+                         info = `${componentData.name} (6"W x 4"H): Center at ${componentData.center}"`;
+                    } else {
+                         info = `${componentData.name}: Center at ${componentData.center}"`;
+                    }
+                } else {
+                    info = `${el.textContent.trim()}`;
+                }
+            }
+
+
+            createTooltip(el, info);
+        });
+    </script>
+
+</body>
+</html>
